@@ -10,9 +10,13 @@
                     <div class="container no-padding">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="hero-nav-area">
-                                    <h1 class="text-white">اخبار دسته بندی {{ $category->name }}</h1>
-                                </div>
+
+                                @if (!empty($category->name ))
+                                    <div class="hero-nav-area">
+                                        <h1 class="text-white">اخبار دسته بندی {{ $category->name }}</h1>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -23,9 +27,13 @@
 
 
             <div class="col-lg-12">
-                <div class="news-tracker-wrap">
-                    <h6><span>خبر فوری:</span> <a href="{{ route('home.show-post', $breakingNews[0]->id) }}">{{ $breakingNews[0]->title }}</a></h6>
-                </div>
+
+                @if (!empty($breakingNews[0]->title ))
+                    <div class="news-tracker-wrap">
+                        <h6><span>خبر فوری:</span> <a href="{{ route('home.show-post', $breakingNews[0]->id) }}">{{ $breakingNews[0]->title }}</a></h6>
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>
@@ -47,21 +55,36 @@
                 <div class="latest-post-wrap">
                     <h4 class="cat-title">آخرین اخبار</h4>
 
+
+                    @if (!empty($categories))
+
                     @foreach ($categories as $category)
                     <div class="single-latest-post row align-items-center">
                         <div class="col-lg-5 post-left">
                             <div class="feature-img relative">
                                 <div class="overlay overlay-bg"></div>
-                                <img class="img-fluid" src="{{ asset($category->image['indexArray']['medium'] )}}" alt="">
+
+                                @if (!empty($category->image))
+                                    <img class="img-fluid" src="{{ asset($category->image['indexArray']['medium'] )}}">
+                                @endif
+
                             </div>
-                            <ul class="tags">
-                                <li><a href="#">{{ $category->category->name }}</a></li>
-                            </ul>
+
+                            @if (!empty($category->category->name))
+                                <ul class="tags">
+                                    <li><a href="#">{{ $category->category->name }}</a></li>
+                                </ul>
+                            @endif
+
                         </div>
                         <div class="col-lg-7 post-right">
-                            <a href="{{ route('home.show-post', $category->id) }}">
-                                <h4>{{ $category->title }}</h4>
-                            </a>
+
+                            @if (!empty($category->title))
+                                <a href="{{ route('home.show-post', $category->id) }}">
+                                    <h4>{{ $category->title }}</h4>
+                                </a>
+                            @endif
+
                             <ul class="meta">
                                 <li><a href="#"><span class="lnr lnr-user"></span> {{ $category->user->username }}</a></li>
                                 <li><a href="#">{{ jdate($category->created_at) }}<span class="lnr lnr-calendar-full"></span></a></li>
@@ -73,11 +96,17 @@
                         </div>
                     </div>
                     @endforeach
+
+                    @endif
+
+
                 </div>
 
+                @if (!empty($categories))
                     <div class="mt-3">
                         {{ $categories->links() }}
                     </div>
+                @endif
 
             </div>
 
