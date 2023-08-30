@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <style>
 .comment-box {
     background-color: #f8f8f8; /* یک رنگ خاکستری روشن برای پس زمینه */
@@ -10,24 +11,34 @@
     margin: 15px 0; /* افزایش فاصله بین نظرات */
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* افزودن سایه */
 }
-
 </style>
+
 
                 <div class="col-lg-8 post-list mb-5">
                     <!-- Start single-post Area -->
                     <div class="single-post-wrap">
                         <div class="feature-img-thumb relative">
                             <div class="overlay overlay-bg"></div>
-                            <img class="img-fluid" src="{{ asset($post->image['indexArray']['large'] )}}" alt="">
+
+                            @if (!empty($post->image))
+                                <img class="img-fluid" src="{{ asset($post->image['indexArray']['large'] )}}">
+                            @endif
 
                         </div>
                         <div class="content-wrap">
-                            <ul class="tags mt-10">
-                                <li><a href="{{ route('home.category', $post->category->id) }}"> {{ $post->category->name }}</a></li>
-                            </ul>
+
+                            @if (!empty($post->category->name))
+                                <ul class="tags mt-10">
+                                    <li><a href="{{ route('home.category', $post->category->id) }}"> {{ $post->category->name }}</a></li>
+                                </ul>
+                            @endif
+
+                            @if (!empty($post->title))
                             <a href="#">
                                 <h3> {{ $post->title }}</h3>
                             </a>
+                            @endif
+
                             <ul class="meta pb-20">
                                 <li><a href="#"><span class="lnr lnr-user"></span> {{ $post->user->username }}</a></li>
                                 <li><a href="#"> {{ jdate($post->created_at) }}<span class="lnr lnr-calendar-full"></span></a></li>

@@ -118,7 +118,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
 
 
 
-// Setting
+// Home page
 Route::prefix('')->namespace('Home')->group(function(){
     Route::get('/', [HomeController::class , 'index'])->name('home.index');
     Route::get('/show-post/{post}', [HomeController::class , 'show'])->name('home.show-post');
