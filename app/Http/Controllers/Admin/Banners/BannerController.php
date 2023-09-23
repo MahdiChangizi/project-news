@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin\Banners;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\BannerRequest;
+use App\Http\Requests\Admin\Banner\BannerStoreRequest;
+use App\Http\Requests\Admin\Banner\BannerUpdateRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Admin\Banner;
-use Illuminate\Http\Request;
-use Nette\Utils\ImageException;
+
 
 class BannerController extends Controller
 {
@@ -31,13 +31,10 @@ class BannerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request , ImageService $imageService)
+    public function store(BannerStoreRequest $request , ImageService $imageService)
     {
         // validation
-        $inputs = $request->validate([
-            'url' => 'required',
-            'image' => 'required|mimes:png,jpg',
-        ]);
+        $inputs = $request->all();
 
         // save image in public
         if($request->hasFile('image'))
@@ -69,7 +66,7 @@ class BannerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(BannerRequest $request, ImageService $imageService , Banner $banner)
+    public function update(BannerUpdateRequest $request, ImageService $imageService , Banner $banner)
     {
         $inputs = $request->all();
 
