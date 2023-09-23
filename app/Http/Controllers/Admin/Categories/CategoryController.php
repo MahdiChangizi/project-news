@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin\Categories;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Category\CategoryStoreRequest;
+use App\Http\Requests\Admin\Category\CategoryUpdateRequest;
 use App\Models\Admin\Category;
-use Illuminate\Auth\Events\Validated;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -29,12 +29,9 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
-
+        
         Category::create(['name' => $request->name ]);
         return to_route('admin.category.index')->with('toast-success' , 'دسته بندی با موفقیت اضافه شد');
     }
@@ -59,11 +56,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Category $category , Request $request)
+    public function update(Category $category , CategoryUpdateRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => 'required'
-        ]);
+        $inputs = $request->all();
 
         $category->update($inputs);
         return to_route('admin.category.index')->with('toast-success' , 'دسته بندی با موفقیت ویرایش شد');
