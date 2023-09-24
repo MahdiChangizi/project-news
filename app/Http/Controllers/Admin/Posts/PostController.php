@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\PostRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Admin\Category;
 use App\Models\Admin\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
