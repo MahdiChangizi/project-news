@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Comments;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Comment;
 use App\Models\Admin\Post;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
