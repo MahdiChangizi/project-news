@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Setting\SettingUpdateRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Admin\Setting;
 use Database\Seeders\SettingSeeder;
-use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
@@ -35,16 +35,10 @@ class SettingController extends Controller
     }
 
 
-    public function update(Request $request, Setting $setting , ImageService $imageService)
+    public function update(SettingUpdateRequest $request, Setting $setting , ImageService $imageService)
     {
         // validation
-        $inputs = $this->validate($request,[
-            'title'         => 'required|min:5'         ,
-            'description'   =>  'required|min:10'       ,
-            'keywords'      =>  'required|min:5'        ,
-            'logo'          =>  'required|mimes:png,jpg',
-            'icon'          =>  'required|mimes:png,jpg',
-        ]);
+        $inputs = $request->all();
 
         // update
         if($request->hasFile('logo'))
@@ -85,9 +79,4 @@ class SettingController extends Controller
 
     }
 
-
-    public function destroy(string $id)
-    {
-
-    }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin\Menus;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Menu\MenuStoreRequest;
+use App\Http\Requests\Admin\Menu\MenuUpdateRequest;
 use App\Models\Admin\Menu;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
@@ -29,15 +30,10 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MenuStoreRequest $request)
     {
         // validation
-        $inputs = $request->validate(
-        [
-            'name' => 'required|min:3|max:20',
-            'url' => 'required',
-            'parent_id' => 'nullable|exists:menus,id',
-        ]);
+        $inputs = $request->all();
 
         // create
         $menus = Menu::create($inputs);
@@ -56,19 +52,13 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Menu $menu)
+    public function update(MenuUpdateRequest $request, Menu $menu)
     {
         // validation
-        $inputs = $request->validate(
-            [
-                'name' => 'required|min:3|max:20',
-                'url' => 'required',
-                'parent_id' => 'nullable|exists:menus,id',
-            ]);
+        $inputs = $request->all();
 
-
-                $menu->update($inputs);
-                return to_route('admin.menu.index')->with('toast-success' , 'منوی شما با موفقیت ویرایش شد');
+        $menu->update($inputs);
+        return to_route('admin.menu.index')->with('toast-success' , 'منوی شما با موفقیت ویرایش شد');
     }
 
     /**
@@ -77,6 +67,6 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         $menu->delete();
-        return back();
+        return back()->with('toast-success' , 'منوی شما با موفقیت حذف شد');
     }
 }

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin\Posts;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\PostRequest;
+use App\Http\Requests\Admin\Post\PostStoreRequest;
+use App\Http\Requests\Admin\Post\PostUpdateRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Admin\Category;
 use App\Models\Admin\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -33,7 +33,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PostRequest $request , ImageService $imageService)
+    public function store(PostStoreRequest $request , ImageService $imageService)
     {
         $inputs = $request->all();
 
@@ -84,7 +84,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostRequest $request, ImageService $imageService , Post $post)
+    public function update(PostUpdateRequest $request, ImageService $imageService , Post $post)
     {
         $inputs = $request->all();
 
