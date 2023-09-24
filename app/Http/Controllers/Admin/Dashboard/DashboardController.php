@@ -7,8 +7,7 @@ use App\Models\Admin\Category;
 use App\Models\Admin\Comment;
 use App\Models\Admin\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 class DashboardController extends Controller
 {
