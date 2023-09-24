@@ -11,7 +11,7 @@ class PostStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class PostStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'summary' => 'required|max:300|min:5',
+            'body' => 'required|max:2000|min:5',
+            'image' => 'required|image|mimes:png,jpg,jpeg,gif',
+            'published_at' => 'required|numeric',
+            'category_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:categories,id',
         ];
     }
 }

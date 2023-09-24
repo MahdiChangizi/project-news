@@ -11,7 +11,7 @@ class PostUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class PostUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'summary' => 'required|max:300|min:5',
+            'body' => 'required|max:2000|min:5',
+            'image' => 'image|mimes:png,jpg,jpeg,gif',
+            'published_at' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id'
         ];
     }
 }

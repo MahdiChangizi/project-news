@@ -11,7 +11,7 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'username' => 'required|regex:/^[a-zA-Z0-9_]+$/u',
+            'password' =>  'required',
+            'permission' => 'required|in:admin,user'
         ];
     }
 }

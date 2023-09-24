@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Comments;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Comment\CommentStoreRequest;
 use App\Models\Admin\Comment;
 use App\Models\Admin\Post;
 
@@ -18,11 +19,9 @@ class CommentController extends Controller
     }
 
 
-    public function store(Post $post, Request $request)
+    public function store(Post $post, CommentStoreRequest $request)
     {
-        $inputs = $request->validate([
-            'comment' => ['required', 'min:3', 'max:500'],
-        ]);
+        $inputs = $request->all();
 
         $inputs['post_id'] = $post->id;
         $inputs['user_id'] = auth()->user()->id;
