@@ -20,15 +20,12 @@
     @error('username')
     <div class="alert alert-danger" role="alert" dir="rtl" style="border-radius: 25px;">
         {{ $message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: left;">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
     @enderror
 
 
         {{-- Email --}}
-    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+    <div class="wrap-input100 validate-input">
         <input class="input100" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
         <span class="focus-input100"></span>
         <span class="symbol-input100">
@@ -38,9 +35,6 @@
     @error('email')
     <div class="alert alert-danger" role="alert" dir="rtl" style="border-radius: 25px;">
         {{ $message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: left;">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
     @enderror
 
@@ -56,9 +50,6 @@
     @error('password')
     <div class="alert alert-danger" role="alert" dir="rtl" style="border-radius: 25px;">
         {{ $message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: left;">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
     @enderror
 
