@@ -20,7 +20,7 @@
      ============================================= -->
 <link rel="stylesheet" href="{{ asset('home/css/linearicons.css') }}">
 <link rel="stylesheet" href="{{ asset('home/css/font-awesome.min.css') }}">
-<link rel="stylesheet" href="{{ asset('home/css/bootstrap.css') }}">
+<link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="{{ asset('home/css/magnific-popup.css') }}">
 <link rel="stylesheet" href="{{ asset('home/css/nice-select.css') }}">
 <link rel="stylesheet" href="{{ asset('home/css/animate.min.css') }}">

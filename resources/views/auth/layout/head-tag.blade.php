@@ -3,7 +3,7 @@
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="assets/images/icons/favicon.ico" />
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="{{ asset('auth/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+<link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="{{ asset('auth/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 <!--===============================================================================================-->
