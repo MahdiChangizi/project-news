@@ -8,8 +8,6 @@
         Password Reset
     </span>
 
-
-
     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
         <input class="input100" type="text" name="email" placeholder="Email">
         <span class="focus-input100"></span>
@@ -25,8 +23,6 @@
         </button>
     </div>
     @enderror
-
-
 
     <div class="container-login100-form-btn">
         <button type="submit" class="login100-form-btn">
