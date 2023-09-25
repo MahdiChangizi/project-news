@@ -6,8 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailViewProvider extends Mailable {
-
+class MailViewProvider extends Mailable
+{
     use Queueable, SerializesModels;
 
     public $details;
@@ -23,5 +23,4 @@ class MailViewProvider extends Mailable {
     {
         return $this->subject($this->subject)->view('emails.send-otp');
     }
-
 }

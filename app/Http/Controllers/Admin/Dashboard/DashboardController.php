@@ -8,7 +8,6 @@ use App\Models\Admin\Comment;
 use App\Models\Admin\Post;
 use App\Models\User;
 
-
 class DashboardController extends Controller
 {
     public function index()
@@ -25,6 +24,7 @@ class DashboardController extends Controller
         $popularPosts = Post::orderBy('view', 'desc')->take(5)->get();
         $mostCommentedPosts = Post::withCount('comments')->orderBy('comments_count', 'desc')->get();
         $comments = Comment::all();
-        return view('admin.dashboard.index', compact('mostCommentedPosts','categories', 'users', 'userAdmin', 'NormalUser', 'posts' , 'views' , 'comment' , 'unseen' , 'seen' , 'popularPosts', 'comments'));
+
+        return view('admin.dashboard.index', compact('mostCommentedPosts', 'categories', 'users', 'userAdmin', 'NormalUser', 'posts', 'views', 'comment', 'unseen', 'seen', 'popularPosts', 'comments'));
     }
 }

@@ -15,7 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.categories.index' , compact('categories'));
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -31,9 +32,10 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
-        
-        Category::create(['name' => $request->name ]);
-        return to_route('admin.category.index')->with('toast-success' , 'دسته بندی با موفقیت اضافه شد');
+
+        Category::create(['name' => $request->name]);
+
+        return to_route('admin.category.index')->with('toast-success', 'دسته بندی با موفقیت اضافه شد');
     }
 
     /**
@@ -49,19 +51,20 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit' , compact('category'));
+        return view('admin.categories.edit', compact('category'));
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Category $category , CategoryUpdateRequest $request)
+    public function update(Category $category, CategoryUpdateRequest $request)
     {
         $inputs = $request->all();
 
         $category->update($inputs);
-        return to_route('admin.category.index')->with('toast-success' , 'دسته بندی با موفقیت ویرایش شد');
+
+        return to_route('admin.category.index')->with('toast-success', 'دسته بندی با موفقیت ویرایش شد');
 
     }
 
@@ -71,6 +74,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return back();
     }
 }

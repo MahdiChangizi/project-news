@@ -15,9 +15,9 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::all();
-        return view('admin.comments.index' , compact('comments'));
-    }
 
+        return view('admin.comments.index', compact('comments'));
+    }
 
     public function store(Post $post, CommentStoreRequest $request)
     {
@@ -31,21 +31,18 @@ class CommentController extends Controller
         return back();
     }
 
-
     public function destroy(Comment $comment)
     {
         $comment->delete();
+
         return back();
     }
 
-
-
     public function status(Comment $comment)
     {
-        $comment->status = $comment->status == 1 ? 0 : 1 ;
+        $comment->status = $comment->status == 1 ? 0 : 1;
         $comment->save();
-        return back()->with('toast-success' , 'وضعیت با موفقیت تغییر کرد!');
+
+        return back()->with('toast-success', 'وضعیت با موفقیت تغییر کرد!');
     }
-
-
 }

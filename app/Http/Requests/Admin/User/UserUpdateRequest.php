@@ -23,8 +23,8 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'username' => 'required|regex:/^[a-zA-Z0-9_]+$/u',
-            'password' =>  'required',
-            'permission' => 'required|in:admin,user'
+            'password' => 'required',
+            'permission' => 'required|in:admin,user',
         ];
     }
 }

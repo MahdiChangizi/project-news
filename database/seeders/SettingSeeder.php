@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,10 +19,7 @@ class SettingSeeder extends Seeder
             'keywords' => 'کلمات کلیدی سایت',
             'logo' => 'logo.png',
             'icon' => 'icon.png',
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
         ]);
     }
 }
-
-
-

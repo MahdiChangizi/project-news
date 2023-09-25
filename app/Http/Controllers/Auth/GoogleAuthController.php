@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
 {
@@ -15,7 +14,6 @@ class GoogleAuthController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-
 
     public function callback()
     {
@@ -26,15 +24,16 @@ class GoogleAuthController extends Controller
 
             if ($user) {
                 Auth::loginUsingId($user->id);
-            }   else {
+            } else {
                 $newUser = User::create([
-                    'username'  =>  str_replace("@gmail.com", "", $googleUser->email) . mt_rand(1000,9999),
-                    'email'     =>  $googleUser->email,
-                    'password'  =>  Str::random(10),
+                    'username' => str_replace('@gmail.com', '', $googleUser->email).mt_rand(1000, 9999),
+                    'email' => $googleUser->email,
+                    'password' => Str::random(10),
                 ]);
 
                 Auth::loginUsingId($newUser->id);
             }
+
             return to_route('admin.dashboard.index')->with('toast-success', 'خوش آمدید!');
 
         } catch (\Exception $e) {
