@@ -28,7 +28,7 @@ class GoogleAuthController extends Controller
                 Auth::loginUsingId($user->id);
             }   else {
                 $newUser = User::create([
-                    'username'  =>  $googleUser->given_name . $googleUser->family_name,
+                    'username'  =>  str_replace("@gmail.com", "", $googleUser->email) . mt_rand(1000,9999),
                     'email'     =>  $googleUser->email,
                     'password'  =>  Str::random(10),
                 ]);
