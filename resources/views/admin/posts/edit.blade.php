@@ -84,11 +84,6 @@
 
 @section('script')
     <script>
-        CKEDITOR.replace('body');
-        CKEDITOR.replace('summary');
-    </script>
-
-    <script>
         $(document).ready(function() {
             $('#published_at_view').persianDatepicker({
                 format: 'YYYY/MM/DD',
