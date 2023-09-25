@@ -18,9 +18,6 @@
     @error('email')
     <div class="alert alert-danger" role="alert" dir="rtl" style="border-radius: 25px;">
         {{ $message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: left;">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
     @enderror
 
