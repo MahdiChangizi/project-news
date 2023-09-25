@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Banner;
 use App\Models\Admin\Category;
 use App\Models\Admin\Post;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -23,10 +22,8 @@ class HomeController extends Controller
 
         $mostControversialPosts = Post::withCount('comments')->orderBy('comments_count', 'desc')->limit(20)->get();
 
-
-        return view('home.index', compact( 'categories', 'latestNews', 'popular', 'topSelectedPost', 'breakingNews', 'banners', 'mostControversialPosts'));
+        return view('home.index', compact('categories', 'latestNews', 'popular', 'topSelectedPost', 'breakingNews', 'banners', 'mostControversialPosts'));
     }
-
 
     public function show(Post $post)
     {
@@ -36,12 +33,11 @@ class HomeController extends Controller
         return view('home.show-post', compact('post', 'nextPost', 'prevPost'));
     }
 
-
     public function category(Category $category)
     {
         $breakingNews = Post::where('breaking_news', 1)->orderBy('created_at', 'desc')->limit(1)->get();
         $categories = $category->posts()->simplePaginate(2);
+
         return view('home.category', compact('category', 'breakingNews', 'categories'));
     }
-
 }

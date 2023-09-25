@@ -15,6 +15,7 @@ class MenuController extends Controller
     public function index()
     {
         $menus = Menu::all();
+
         return view('admin.menus.index', compact('menus'));
     }
 
@@ -24,7 +25,8 @@ class MenuController extends Controller
     public function create()
     {
         $parents = Menu::whereNull('parent_id')->get();
-        return view('admin.menus.create' , compact('parents'));
+
+        return view('admin.menus.create', compact('parents'));
     }
 
     /**
@@ -37,16 +39,15 @@ class MenuController extends Controller
 
         // create
         $menus = Menu::create($inputs);
-        return to_route('admin.menu.index')->with('toast-success' , 'منوی شما با موفقیت اضافه شد');
+
+        return to_route('admin.menu.index')->with('toast-success', 'منوی شما با موفقیت اضافه شد');
     }
-
-
-
 
     public function edit(Menu $menu)
     {
-        $parents = Menu::whereNot('id' , $menu->id)->get();
-        return view('admin.menus.edit' , compact('parents' ,'menu'));
+        $parents = Menu::whereNot('id', $menu->id)->get();
+
+        return view('admin.menus.edit', compact('parents', 'menu'));
     }
 
     /**
@@ -58,7 +59,8 @@ class MenuController extends Controller
         $inputs = $request->all();
 
         $menu->update($inputs);
-        return to_route('admin.menu.index')->with('toast-success' , 'منوی شما با موفقیت ویرایش شد');
+
+        return to_route('admin.menu.index')->with('toast-success', 'منوی شما با موفقیت ویرایش شد');
     }
 
     /**
@@ -67,6 +69,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         $menu->delete();
-        return back()->with('toast-success' , 'منوی شما با موفقیت حذف شد');
+
+        return back()->with('toast-success', 'منوی شما با موفقیت حذف شد');
     }
 }

@@ -13,7 +13,8 @@ class MessageService
         $this->message = $message;
     }
 
-    public function send(){
+    public function send()
+    {
         return $this->message->fire();
     }
 }

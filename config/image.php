@@ -21,43 +21,42 @@ return [
     'index-image-sizes' => [
         'large' => [
             'width' => 800,
-            'height' => 600
+            'height' => 600,
         ],
-         'medium' => [
+        'medium' => [
             'width' => 350,
-            'height' => 350
+            'height' => 350,
         ],
-         'small' => [
+        'small' => [
             'width' => 80,
-            'height' => 60
+            'height' => 60,
         ],
-         'banner1' => [
+        'banner1' => [
             'width' => 728,
-            'height' =>90
+            'height' => 90,
         ],
-         'banner2' => [
+        'banner2' => [
             'width' => 320,
-            'height' =>250
+            'height' => 250,
         ],
 
     ],
 
     'default-current-index-image' => 'medium',
 
-
- //index size
+    //index size
     'cache-image-sizes' => [
         'large' => [
             'width' => 800,
-            'height' => 600
+            'height' => 600,
         ],
-         'medium' => [
+        'medium' => [
             'width' => 400,
-            'height' => 300
+            'height' => 300,
         ],
-         'small' => [
+        'small' => [
             'width' => 80,
-            'height' => 60
+            'height' => 60,
         ],
 
     ],
@@ -66,6 +65,6 @@ return [
 
     'image-cache-life-time' => 10,
 
-    'image-not-found' => ''
+    'image-not-found' => '',
 
 ];

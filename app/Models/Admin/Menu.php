@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
-    protected $fillable = ['name' , 'url' , 'parent_id'];
+
+    protected $fillable = ['name', 'url', 'parent_id'];
 
     public function parent()
     {
@@ -19,5 +20,4 @@ class Menu extends Model
     {
         return $this->hasMany(Menu::class, 'parent_id');
     }
-
 }

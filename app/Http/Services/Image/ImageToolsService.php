@@ -4,13 +4,18 @@ namespace App\Http\Services\Image;
 
 class ImageToolsService
 {
-
     protected $image;
+
     protected $exclusiveDirectory;
+
     protected $imageDirectory;
+
     protected $imageName;
+
     protected $imageFormat;
+
     protected $finalImageDirectory;
+
     protected $finalImageName;
 
     public function setImage($image)
@@ -32,6 +37,7 @@ class ImageToolsService
     {
         return $this->imageDirectory;
     }
+
     public function setImageDirectory($imageDirectory)
     {
         $this->imageDirectory = trim($imageDirectory, '/\\');
@@ -42,15 +48,15 @@ class ImageToolsService
         return $this->imageName;
     }
 
-     public function setImageName($imageName)
+    public function setImageName($imageName)
     {
         $this->imageName = $imageName;
     }
 
     public function setCurrentImageName()
     {
-            return !empty($this->image) ? $this->setImageName(pathinfo($this->image->getClientOriginalName(), PATHINFO_FILENAME)) : false;
-            // $_FILES['image']['name']
+        return ! empty($this->image) ? $this->setImageName(pathinfo($this->image->getClientOriginalName(), PATHINFO_FILENAME)) : false;
+        // $_FILES['image']['name']
     }
 
     public function getImageFormat()
@@ -58,7 +64,7 @@ class ImageToolsService
         return $this->imageFormat;
     }
 
-   public function setImageFormat($imageFormat)
+    public function setImageFormat($imageFormat)
     {
         $this->imageFormat = $imageFormat;
     }
@@ -73,7 +79,7 @@ class ImageToolsService
         $this->finalImageDirectory = $finalImageDirectory;
     }
 
-   public function getFinalImageName()
+    public function getFinalImageName()
     {
         return $this->finalImageName;
     }
@@ -85,45 +91,31 @@ class ImageToolsService
 
     protected function checkDirectory($imageDirectory)
     {
-        if(!file_exists($imageDirectory))
-        {
+        if (! file_exists($imageDirectory)) {
             mkdir($imageDirectory, 0755, true);
         }
     }
 
     public function getImageAddress()
     {
-        return $this->finalImageDirectory . DIRECTORY_SEPARATOR . $this->finalImageName;
+        return $this->finalImageDirectory.DIRECTORY_SEPARATOR.$this->finalImageName;
     }
 
     protected function provider()
     {
         //set properties
-        $this->getImageDirectory() ?? $this->setImageDirectory(date('Y') . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR . date('d'));
+        $this->getImageDirectory() ?? $this->setImageDirectory(date('Y').DIRECTORY_SEPARATOR.date('m').DIRECTORY_SEPARATOR.date('d'));
         $this->getImageName() ?? $this->setImageName(time());
         $this->getImageFormat() ?? $this->setImageFormat($this->image->extension());
 
-
         //set final image Directory
-        $finalImageDirectory = empty($this->getExclusiveDirectory()) ? $this->getImageDirectory() : $this->getExclusiveDirectory() . DIRECTORY_SEPARATOR . $this->getImageDirectory();
+        $finalImageDirectory = empty($this->getExclusiveDirectory()) ? $this->getImageDirectory() : $this->getExclusiveDirectory().DIRECTORY_SEPARATOR.$this->getImageDirectory();
         $this->setFinalImageDirectory($finalImageDirectory);
 
-
         //set final image name
-        $this->setFinalImageName($this->getImageName() . '.' . $this->getImageFormat());
-
+        $this->setFinalImageName($this->getImageName().'.'.$this->getImageFormat());
 
         //check adn create final image directory
         $this->checkDirectory($this->getFinalImageDirectory());
     }
-
-
-
-
-
-
-
-
-
-
 }
