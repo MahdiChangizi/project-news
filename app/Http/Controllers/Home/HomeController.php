@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function category(Category $category)
     {
         $breakingNews = Post::where('breaking_news', 1)->orderBy('created_at', 'desc')->limit(1)->get();
-        $categories = $category->posts()->simplePaginate(2);
+        $categories = $category->posts()->simplePaginate(5);
 
         return view('home.category', compact('category', 'breakingNews', 'categories'));
     }

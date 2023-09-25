@@ -178,7 +178,7 @@
                                     <li><a href="#"> {{ $latestNew->comments->count() }}<span class="lnr lnr-bubble"></span></a></li>
                                 </ul>
                                 <p class="excert">
-                                {!! $latestNew->summary !!}
+                                {{ wordwrap($latestNew->summary, 20, "\n", true) }}
                                 </p>
                             </div>
                         </div>
@@ -274,7 +274,7 @@
                                         <li><a href="#"> {{ $popular[1]->comments->count() }}<span class="lnr lnr-bubble"></span></a></li>
                                     </ul>
                                     <p class="excert">
-                                        {!! $popular[1]->summary !!}
+                                        {{ wordwrap($popular[1]->summary, 20, "\n", true) }}
                                     </p>
                                 </div>
 
@@ -315,8 +315,11 @@
                                         <li><a href="#"> {{ jdate($popular[2]->created_at) }}<span class="lnr lnr-calendar-full"></span></a></li>
                                         <li><a href="#"> {{ $popular[2]->comments->count() }}<span class="lnr lnr-bubble"></span></a></li>
                                     </ul>
-                                    <p class="excert">
-                                        {!! $popular[2]->summary !!}
+
+                                        <p class="excert">
+                                            {{ wordwrap($popular[2]->summary, 20, "\n", true) }}
+                                        </p>
+                                        
                                 </div>
                             </div>
                         @endif

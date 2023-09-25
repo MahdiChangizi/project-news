@@ -45,7 +45,7 @@
                                 <li><a href="#"> {{ $post->comments->count() }}<span class="lnr lnr-bubble"></span></a></li>
                             </ul>
 
-                            {!! $post->body !!}
+                            {{ wordwrap($post->body, 20, "\n", true) }}
 
 
 
