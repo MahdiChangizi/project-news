@@ -91,7 +91,7 @@
                                 <li><a href="#"> {{ $category->comments->count() }}<span class="lnr lnr-bubble"></span></a></li>
                             </ul>
                             <p class="excert">
-                            {!! $category->summary !!}
+                                {{ wordwrap($category->summary, 20, "\n", true) }}
                             </p>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
 
                 @if (!empty($categories))
                     <div class="mt-3">
-                        {{ $categories->links() }}
+                        {{ $categories->links('pagination::simple-bootstrap-5') }}
                     </div>
                 @endif
 

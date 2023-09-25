@@ -52,16 +52,16 @@ class UserController extends Controller
 
     public function change(User $user)
     {
-        if ($user['permission'] == 'user') {
-            $user['permission'] = 'admin';
+        if ($user['permission'] == 0) {
+            $user['permission'] = 1;
             $user->save();
 
             return to_route('admin.user.index')->with('toast-success', 'کاربر شما با موفقیت مدیر شد');
-        } elseif ($user['permission'] == 'admin') {
-            $user['permission'] = 'user';
+        } elseif ($user['permission'] == 1) {
+            $user['permission'] = 0;
             $user->save();
 
-            return to_route('admin.user.index')->with('toast-success', 'کاربر شما با موفقیت از مدیر بودن خارج شد');
+            return redirect('admin/index')->with('toast-success', 'کاربر شما با موفقیت از مدیر بودن خارج شد');
         }
     }
 }

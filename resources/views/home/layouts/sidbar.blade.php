@@ -30,7 +30,7 @@ $banners = App\Models\Admin\Banner::orderBy('created_at', 'desc')->limit(2)->get
                         <li><a href="#"> {{ $topSelectedPost[0]->comments->count() }}<span class="lnr lnr-bubble"></span></a></li>
                     </ul>
                     <p class="excert">
-                        {!! $topSelectedPost[0]->summary !!}
+                        {{ wordwrap($topSelectedPost[0]->summary, 20, "\n", true) }}
                     </p>
                 </div>
             </div>
