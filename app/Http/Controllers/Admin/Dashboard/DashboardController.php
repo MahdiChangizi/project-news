@@ -8,20 +8,23 @@ use App\Models\Admin\Comment;
 use App\Models\Admin\Post;
 use App\Models\User;
 use App\Repository\Admin\Category\CategoryRepository;
+use App\Repository\Admin\User\UserRepository;
 
 class DashboardController extends Controller
 {
     protected $categoryRepository;
-    public function __construct(CategoryRepository $categoryRepository)
+    protected $userRepository;
+    public function __construct(CategoryRepository $categoryRepository, UserRepository $userRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->userRepository = $userRepository;
     }
 
 
     public function index()
     {
         $categories = $this->categoryRepository->getAll();
-        $users = User::all();
+        $users = $this->userRepository->getAll();
         $userAdmin = User::where('permission', 'admin')->get();
         $NormalUser = User::where('permission', 'user')->get();
         $posts = Post::all();
