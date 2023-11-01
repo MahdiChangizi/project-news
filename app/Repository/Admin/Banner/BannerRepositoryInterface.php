@@ -7,5 +7,5 @@ interface BannerRepositoryInterface
     public function getData();
     public function storeData($request);
     public function updateData();
-    public function deleteData();
+    public function deleteData($banner);
 }

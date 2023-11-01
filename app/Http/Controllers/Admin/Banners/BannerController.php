@@ -100,7 +100,7 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
-        $banner->delete();
+        $this->bannerRepository->deleteData($banner);
         return back();
     }
 }

@@ -23,8 +23,8 @@ class BannerRepository implements BannerRepositoryInterface
         // TODO: Implement updateData() method.
     }
 
-    public function deleteData()
+    public function deleteData($banner)
     {
-        // TODO: Implement deleteData() method.
+        $banner->delete();
     }
 }
