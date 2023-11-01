@@ -7,16 +7,23 @@ use App\Http\Requests\Admin\Banner\BannerStoreRequest;
 use App\Http\Requests\Admin\Banner\BannerUpdateRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Admin\Banner;
+use App\Repository\Admin\Banner\BannerRepositoryInterface;
 
 class BannerController extends Controller
 {
+    private BannerRepositoryInterface $bannerRepository;
+
+    public function __construct(BannerRepositoryInterface $bannerRepository)
+    {
+        $this->bannerRepository = $bannerRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $banners = Banner::all();
-
+        $banners = $this->bannerRepository->getData();
         return view('admin.banners.index', compact('banners'));
     }
 
@@ -33,9 +40,6 @@ class BannerController extends Controller
      */
     public function store(BannerStoreRequest $request, ImageService $imageService)
     {
-        // validation
-        $inputs = $request->all();
-
         // save image in public
         if ($request->hasFile('image')) {
             $imageService->setExclusiveDirectory('images'.DIRECTORY_SEPARATOR.'Banners');
@@ -47,10 +51,8 @@ class BannerController extends Controller
         }
 
         // create Banner
-        $banner = Banner::create($inputs);
-
+        $this->bannerRepository->storeData($request);
         return to_route('admin.banner.index')->with('toast-success', 'بنر شما با موفقیت اضافه شد');
-
     }
 
     /**
@@ -99,7 +101,6 @@ class BannerController extends Controller
     public function destroy(Banner $banner)
     {
         $banner->delete();
-
         return back();
     }
 }
