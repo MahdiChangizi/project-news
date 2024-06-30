@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $banner->url }}</td>
-                        <td><img style="width: 80px;" src="{{ asset($banner->image['indexArray']['medium']) }}" alt="{{ $banner->id }}"></td>
+{{--                        <td><img style="width: 80px;" src="{{ asset($banner->image['indexArray']['medium']) }}" alt="{{ $banner->id }}"></td>--}}
                         <td>
                             <a role="button" class="btn btn-sm btn-primary text-white" href="{{ route('admin.banner.edit' , $banner->id) }}">edit</a>
 

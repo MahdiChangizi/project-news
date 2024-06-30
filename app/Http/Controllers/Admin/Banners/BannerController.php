@@ -58,7 +58,7 @@ class BannerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Banner $banner)
+    public function edit(Banner $banner): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('admin.banners.edit', compact('banner'));
     }
@@ -66,7 +66,7 @@ class BannerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(BannerUpdateRequest $request, ImageService $imageService, Banner $banner)
+    public function update(BannerUpdateRequest $request, ImageService $imageService, Banner $banner): \Illuminate\Http\RedirectResponse
     {
         $inputs = $request->all();
 
@@ -98,7 +98,7 @@ class BannerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Banner $banner)
+    public function destroy(Banner $banner): \Illuminate\Http\RedirectResponse
     {
         $this->bannerRepository->deleteData($banner);
         return back();

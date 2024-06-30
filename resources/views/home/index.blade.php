@@ -319,7 +319,7 @@
                                         <p class="excert">
                                             {{ wordwrap($popular[2]->summary, 20, "\n", true) }}
                                         </p>
-                                        
+
                                 </div>
                             </div>
                         @endif

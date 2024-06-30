@@ -4,6 +4,7 @@ namespace App\Repository\Admin\Banner;
 
 use App\Models\Admin\Banner;
 use App\Repository\Admin\Banner\BannerRepositoryInterface;
+use Illuminate\Support\Facades\Request;
 
 class BannerRepository implements BannerRepositoryInterface
 {
@@ -13,7 +14,7 @@ class BannerRepository implements BannerRepositoryInterface
         return Banner::all();
     }
 
-    public function storeData(request $request)
+    public function storeData($request): void
     {
         Banner::create($request->all());
     }
@@ -23,7 +24,7 @@ class BannerRepository implements BannerRepositoryInterface
         // TODO: Implement updateData() method.
     }
 
-    public function deleteData($banner)
+    public function deleteData($banner): void
     {
         $banner->delete();
     }
